@@ -1,0 +1,65 @@
+PODS:
+  - Alamofire (5.0.0-beta.3)
+  - AlamofireObjectMapper (6.0.0):
+    - Alamofire (~> 5.0.0-beta.2)
+    - ObjectMapper (~> 3.4)
+  - IHKeyboardAvoiding (4.6)
+  - ObjectMapper (3.4.2)
+  - Realm (3.15.0):
+    - Realm/Headers (= 3.15.0)
+  - Realm/Headers (3.15.0)
+  - RealmSwift (3.15.0):
+    - Realm (= 3.15.0)
+  - Reusable (4.1.0):
+    - Reusable/Storyboard (= 4.1.0)
+    - Reusable/View (= 4.1.0)
+  - Reusable/Storyboard (4.1.0)
+  - Reusable/View (4.1.0)
+  - SpringIndicator (5.0.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftMessages (6.0.2):
+    - SwiftMessages/App (= 6.0.2)
+  - SwiftMessages/App (6.0.2)
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire (= 5.0.0-beta.3)
+  - AlamofireObjectMapper
+  - IHKeyboardAvoiding
+  - RealmSwift
+  - Reusable
+  - SpringIndicator
+  - SVProgressHUD
+  - SwiftMessages
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireObjectMapper
+    - IHKeyboardAvoiding
+    - ObjectMapper
+    - Realm
+    - RealmSwift
+    - Reusable
+    - SpringIndicator
+    - SVProgressHUD
+    - SwiftMessages
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 50d6fa7e8cbe7f84559e86ab641ffd029db655f8
+  AlamofireObjectMapper: 8cf0e01a1b36b485877033f8f6aa733977488da3
+  IHKeyboardAvoiding: 2a664fdb5f964359fa7ec8fc5c9aebb447583ff8
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  Realm: 9b834e1be6062f544805252c812348872dc5d4ed
+  RealmSwift: 8a41886f8ab6efef9eb8df97de2f2bb911561a79
+  Reusable: 82be188f29d96dc5eff0db7b2393bcc08d2cdd5b
+  SpringIndicator: 111bf862e1415e5ac7b3a43c0cd09633d5715fd6
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftMessages: 8b3cc68dba2f1c91aac1a74c90b10287aac35371
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+
+PODFILE CHECKSUM: 3aadd5d958780e4daf6eb0f87c7695966022e96f
+
+COCOAPODS: 1.6.1
