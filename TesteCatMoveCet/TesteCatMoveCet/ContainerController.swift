@@ -106,6 +106,21 @@ class ContainerController: UIViewController {
             
         case .favorito:
             
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            
+            self.homeVC = vc
+            
+            self.homeVC.delegate = self
+          
+            self.homeVC.favorite = true
+            
+            self.centerCV = UINavigationController(rootViewController: homeVC)
+            
+            view.addSubview(self.centerCV.view)
+            addChild(self.centerCV)
+            self.centerCV.didMove(toParent: self)
+            
             break
         case .sair:
             

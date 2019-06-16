@@ -74,7 +74,10 @@ class MovieViewController: UIViewController {
 
         if let obj = result.first {
             
-            obj.favorite = !obj.favorite
+            try! uiRealm.write {
+                obj.favorite = !obj.favorite
+            }
+        
         }
     }
 }

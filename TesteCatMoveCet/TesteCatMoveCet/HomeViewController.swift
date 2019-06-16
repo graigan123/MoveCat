@@ -15,6 +15,8 @@ class HomeViewController: UIViewController {
     
     var movieView: [MovieUnitaryView] = []
     
+    var favorite = false
+    
     var tableView: UITableView = {
        
         var tableview = UITableView()
@@ -37,7 +39,15 @@ class HomeViewController: UIViewController {
         self.setDelegates()
         self.configureNavigationBar()
         
-        self.movieView = MovieListModelView.getAllMovieUnitary()
+        if self.favorite {
+            self.movieView = MovieListModelView.getAllMovieUnitary().filter({ (mov) -> Bool in
+                return mov.favortie
+            })
+        } else {
+            self.movieView = MovieListModelView.getAllMovieUnitary()
+        }
+        
+        
         
     }
     
