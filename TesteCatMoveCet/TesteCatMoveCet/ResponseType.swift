@@ -9,4 +9,5 @@
 public enum ResponseType {
     
     case login
+    case listMovie
 }

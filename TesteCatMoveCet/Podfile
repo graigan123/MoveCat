@@ -16,5 +16,6 @@ target 'TesteCatMoveCet' do
  pod 'SwiftMessages' 
  pod 'SVProgressHUD'
  pod 'SpringIndicator'
+ pod 'HandyJSON', '~> 5.0.0'
 
 end

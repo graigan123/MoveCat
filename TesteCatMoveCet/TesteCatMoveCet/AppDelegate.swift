@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 
 var uiRealm = try! Realm()
+let baseURL = "https://api.themoviedb.org/3/movie/popular?api_key="
+let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MWFmYTc1MzhhMThiNmQ2MzE5MzVkYzlmMzcwZGFkNiIsInN1YiI6IjVkMDFhN2Q0YzNhMzY4NGFkYjIzNDZkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.l8-yGWApmIqrxvaBqAHwkgrKSTJ5jf3l8AcsXRhd3gU"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         UIApplication.shared.statusBarStyle = .lightContent
+        
+//        window = UIWindow()
+//        window?.makeKeyAndVisible()
+//        window?.rootViewController = ContainerController()
+        
+        Realm.showPath()
         
         return true
     }

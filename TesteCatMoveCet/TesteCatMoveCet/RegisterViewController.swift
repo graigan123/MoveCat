@@ -53,7 +53,7 @@ class RegisterViewController: UIViewController {
         
         self.nameTextField.setTextField(placeholder: "Your name")
         self.ageTextField.setTextField(placeholder: "Your age")
-        self.userNameTextField.setTextField(placeholder: "Your user anme")
+        self.userNameTextField.setTextField(placeholder: "Your username")
         self.password.setTextField(placeholder: "Your password")
         self.registerButton.setButtonText(text: "Register")
         self.setConstraints()
@@ -71,8 +71,13 @@ class RegisterViewController: UIViewController {
     
     @objc func registerAction(_ sender: UIButton) {
         
-        navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        if UserModelView.makeUser(name: nameTextField.text, age: ageTextField.text, username: userNameTextField.text, password: password.text) {
+            
+            navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            MessageAlert.init(title: "Campos Vazios", body: "Você precisa preencher todos os campos", target: self).showError()
+        }
     }
     
     func setConstraints() {

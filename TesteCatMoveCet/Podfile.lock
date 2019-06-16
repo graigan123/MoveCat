@@ -3,6 +3,7 @@ PODS:
   - AlamofireObjectMapper (6.0.0):
     - Alamofire (~> 5.0.0-beta.2)
     - ObjectMapper (~> 3.4)
+  - HandyJSON (5.0.0)
   - IHKeyboardAvoiding (4.6)
   - ObjectMapper (3.4.2)
   - Realm (3.15.0):
@@ -25,6 +26,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 5.0.0-beta.3)
   - AlamofireObjectMapper
+  - HandyJSON (~> 5.0.0)
   - IHKeyboardAvoiding
   - RealmSwift
   - Reusable
@@ -37,6 +39,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireObjectMapper
+    - HandyJSON
     - IHKeyboardAvoiding
     - ObjectMapper
     - Realm
@@ -50,6 +53,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 50d6fa7e8cbe7f84559e86ab641ffd029db655f8
   AlamofireObjectMapper: 8cf0e01a1b36b485877033f8f6aa733977488da3
+  HandyJSON: 992f2d661716d6a91de82d0056927bc7813b5770
   IHKeyboardAvoiding: 2a664fdb5f964359fa7ec8fc5c9aebb447583ff8
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
   Realm: 9b834e1be6062f544805252c812348872dc5d4ed
@@ -60,6 +64,6 @@ SPEC CHECKSUMS:
   SwiftMessages: 8b3cc68dba2f1c91aac1a74c90b10287aac35371
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 3aadd5d958780e4daf6eb0f87c7695966022e96f
+PODFILE CHECKSUM: 8443c2843f5afe4117feaccdfc67038f79758b8f
 
 COCOAPODS: 1.6.1

@@ -12,15 +12,15 @@ import ObjectMapper
 
 class User: Object {
     
-    dynamic var id = 0
-    dynamic var name: String = ""
-    dynamic var age: String = ""
-    dynamic var userName: String = ""
-    dynamic var password: String = ""
-    dynamic var adult: Bool = false
+    @objc dynamic var id = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var age: String = ""
+    @objc dynamic var userName: String = ""
+    @objc dynamic var password: String = ""
+    
     
     override public static func primaryKey() -> String? {
-        return "id"
+        return "userName"
     }
     
     

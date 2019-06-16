@@ -60,17 +60,35 @@ extension UIButton {
 extension UIImageView {
     
     func setCicle(height: CGFloat) {
-   
-//        self.layer.cornerRadius = self.frame.width / 2
-//        self.layer.borderWidth = 1
-//        self.layer.masksToBounds = false
-//        self.layer.borderColor = UIColor.white.cgColor
-//        self.clipsToBounds = true
         
         self.layer.borderWidth = 1
         self.layer.masksToBounds = true
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.cornerRadius = height/2
         self.clipsToBounds = true
+    }
+    
+    public func imageFromURL(urlString: String) {
+        
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+        activityIndicator.startAnimating()
+        if self.image == nil{
+            self.addSubview(activityIndicator)
+        }
+        
+        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
+            
+            if error != nil {
+                print(error ?? "No Error")
+                return
+            }
+            DispatchQueue.main.async(execute: { () -> Void in
+                let image = UIImage(data: data!)
+                activityIndicator.removeFromSuperview()
+                self.image = image
+            })
+            
+        }).resume()
     }
 }

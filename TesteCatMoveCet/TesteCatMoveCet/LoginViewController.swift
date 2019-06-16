@@ -7,18 +7,21 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 enum LINE_POSITION {
     case LINE_POSITION_TOP
     case LINE_POSITION_BOTTOM
 }
 
+var userCurrent: UserView?
+
 class LoginViewController: UIViewController {
 
     //MARK: - outlets
     var imageView : UIImageView = {
         let theImageView = UIImageView()
-        theImageView.image = UIImage(named: "yourImage.png")
+        theImageView.image = UIImage(named: "logo")
         theImageView.translatesAutoresizingMaskIntoConstraints = false
         theImageView.backgroundColor = .red
         return theImageView
@@ -52,6 +55,8 @@ class LoginViewController: UIViewController {
         return .lightContent
     }
     
+    var movieService: MovieService?
+    
     //MARK: - construtors
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +79,8 @@ class LoginViewController: UIViewController {
         self.registerButton.addTarget(self, action: #selector(LoginViewController.registerVCAction(_:)), for: .touchUpInside)
         
         self.setNeedsStatusBarAppearanceUpdate()
+        
+        self.movieService = MovieService(delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,22 +93,7 @@ class LoginViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = false
     }
-    
-    @objc func accessAction(_ sender: UIButton) {
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let resultViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        
-        self.present(resultViewController, animated: true, completion:nil)
-        
-    }
-    
-    @objc func registerVCAction(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: "register", sender: nil)
-    }
-    
+
     func setConstraints() {
         
         self.imageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
@@ -128,13 +120,34 @@ class LoginViewController: UIViewController {
         
     }
     
+    @objc func accessAction(_ sender: UIButton) {
+        
+        if let user = UserModelView.getUserBy(username: userNameTextField.text ?? "-") {
+            
+            SVProgressHUD.show(withStatus: "Loading...")
+            //        self.loginService?.postRequestToken()
+            
+            self.movieService?.getListMovie()
+            
+//            userCurrent = user
+            
+        } else {
+            MessageAlert.init(title: "Falha no login", body: "Usuário não existe.", target: self).showError()
+        }
+        
+    }
+    
+    @objc func registerVCAction(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "register", sender: nil)
+    }
+    
     //MARK: - Handlers
     func setDelegates() {
 //        self.loginTextField.delegate = self
 //        self.passtTextField.delegate = self
         
     }
-
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -151,5 +164,62 @@ extension LoginViewController {
 //        UserDefaults.standard.setValue(self.loginTextField.text!, forKey: Contants.shared.login)
 //        UserDefaults.standard.setValue(self.passtTextField.text!, forKey: Contants.shared.pass)
         
+    }
+}
+
+extension LoginViewController: StatefulViewControllerDelegate {
+    
+    func hasContent() -> Bool {
+        return true
+    }
+    
+    func success(_ type: ResponseType) {
+        
+        switch type {
+        case .login:
+            
+            SVProgressHUD.dismiss()
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+            let resultViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            
+            self.present(resultViewController, animated: true, completion:nil)
+            
+        case .listMovie:
+            
+            SVProgressHUD.dismiss()
+
+            
+            let vc = ContainerController()
+            let window: UIWindow = UIApplication.shared.keyWindow!
+            vc.view.layoutIfNeeded()
+            
+            UIView.transition(with: window, duration: 0.4, options: .transitionCrossDissolve, animations: {
+                window.rootViewController = vc
+            }, completion: nil)
+            
+            
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//            let resultViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//
+//            self.present(resultViewController, animated: true, completion:nil)
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    func failure(_ type: ResponseType, error: Error) {
+        
+        SVProgressHUD.dismiss()
+        
+        let errorHandler = error as NSError
+        
+        let info = errorHandler.userInfo["type"] as! APIError
+        
+        MessageAlert.init(body: info.description, target: self).showError()
     }
 }
